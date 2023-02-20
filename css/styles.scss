@@ -1,0 +1,396 @@
+@mixin button-group {
+    border-radius: 25px;
+    box-shadow: 10px 10px 6px #FFFFFF29;
+    background: #FFFFFF;
+    border: 1px solid #9DA4BC;
+    height: 40px;
+}
+
+@mixin button-group-input ($color, $font-size) {
+    outline: transparent;
+    border: 1px solid transparent;
+    background: none;
+    font-size: $font-size;
+    border-radius: 25px;
+    color: $color;
+    transition: background 0.1s;
+    cursor: pointer;
+}
+
+$primary-color: #3A61A0;
+$white-color: #FFFFFF;
+$secondary-color: #45516d;
+$success-color: #7FB457;
+$gray-color: #9A9B9C;
+
+$small: 375px;
+$medium: 768px;
+$large: 1920px;
+
+html, body {
+    margin: 0;
+    height:100%;
+}
+
+* {
+    font-family: 'Roboto', sans-serif;
+    box-sizing: border-box;
+}
+
+.app {
+    background: url(../assets/leaves_left@3x.png), url(../assets/leaves_right@3x.png), url(../assets/fixed_bg_desk.png);
+    background-repeat: no-repeat, no-repeat, no-repeat;
+    background-position: -178px -16px, right -151px top, center;
+    background-size: 356px 699px, 320px 678px, 100% 100%;
+    padding: 20px 0;
+
+    @media screen and (max-width: $medium) {
+        background: url(../assets/leaves_left@3x.png), url(../assets/leaves_right@3x.png), url(../assets/fixed_bg.png);
+        background-repeat: no-repeat, no-repeat, no-repeat;
+        background-position: -182px -16px, right -151px top, center;
+        background-size: 356px 699px, 320px 678px, 100% 100%;
+    }
+
+    @media screen and (max-width: $small) {
+        background: url(../assets/leaves_left@3x.png), url(../assets/leaves_right@3x.png), url(../assets/fixed_bg.png);
+        background-repeat: no-repeat, no-repeat, no-repeat;
+        background-position: -171px 140px, 263px 173px, center;
+        background-size: 273px 454px, 197px 351px, 100% 100%;
+    }
+
+    h2 {
+        color: $primary-color;
+        text-transform: uppercase;
+        margin: 0;
+        padding: 20px 0;
+        
+    }
+
+    &-container {
+        text-align: center;
+    }
+
+    
+}
+
+.form {
+    max-width: 344px;
+    margin: auto;
+    &-submit-button {
+        margin-top: 18px;
+        width: 100%;
+        background: $success-color;
+        outline: none;
+        border-radius: 29px;
+        text-transform: uppercase;
+        border: none;
+        color: $white-color;
+        font-size: 30px;
+        font-weight: bold;
+        height: 58px;
+        cursor: pointer;
+
+        &:disabled {
+            background: $gray-color;
+            cursor: auto;
+        }
+    }
+}
+
+.button-group-quantity {
+    @include button-group();
+    position: relative;
+    z-index: 0;
+
+    & :nth-child(1) {
+        left: 0; 
+    }
+
+    & :nth-child(2) {
+        margin-left: auto; 
+        margin-right: auto; 
+        left: 0; 
+        right: 0;
+    }
+
+    & :nth-child(3) {
+        right: 0; 
+    }
+    
+    input {
+        @include button-group-input($gray-color, 25px);
+        position: absolute;
+        width: 120px;
+        z-index: 1;
+        height: inherit;
+
+        &:hover:not([disabled]), &.active, &:focus{
+            background: $primary-color;
+            color: $white-color;
+            font-size: 30px;
+            height: 46px;
+            top: -4px;
+        }
+    }
+}
+
+.button-group-agreement {
+    @include button-group();
+    display: flex;
+    margin-top: 17px;
+    margin-bottom: 50px;
+
+    input {
+        @include button-group-input($secondary-color, 16px);
+        flex: 1 1 0;
+        font-weight: 300;
+
+        &:hover:not([disabled]), &.active, &:focus {
+            background: $primary-color;
+            color: $white-color;
+        }
+    }
+}
+
+.images-container {
+    position: relative;
+    height: 158px;
+    z-index: 0;
+
+    img {
+        max-width: 215px;
+        position: absolute;
+        -webkit-animation: fadeIn 0.4s linear forwards;
+        animation: fadeIn 0.4s linear forwards;
+
+        &:nth-child(1) {
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            z-index: 1;
+            top: 15px;
+        }
+
+        &:nth-child(2) {
+            left: -27px;
+        }
+
+        &:nth-child(3) {
+            right: -27px;
+        }
+        &:nth-child(4) {
+            max-width: 187px;
+            left: 0;
+            right: 0;
+            margin-left: auto;
+            margin-right: auto;
+            top: -35px;
+            z-index: -1;
+        }
+        
+        &:nth-child(5) {
+            left: -45px;
+            top: -60px;
+            z-index: -2;
+        } 
+        
+        &:nth-child(6) {
+            right: -45px;
+            top: -60px;
+            z-index: -2;
+        }
+    }
+
+    &-stamp {
+        max-width: 100px;
+        position: absolute;
+        left: 30px;
+        top: -15px;
+        z-index: 1;
+
+        &-text {
+            position: absolute;
+            max-width: 55px;
+            transform: rotate(-20deg);
+            left: 48px;
+            z-index: 1;
+            top: 10px;
+            font-weight: bold;
+        }
+        
+    }
+
+    .stamp-6 {
+        filter: invert(25%) sepia(39%) saturate(600%) hue-rotate(51deg) brightness(90%) contrast(82%)
+    }
+    .text-3 {
+        color: $secondary-color;
+    }
+
+    .text-6 {
+        color: $white-color;
+    }
+}
+
+
+@-webkit-keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+  
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+.accept-terms {
+    text-align: left;
+    margin-bottom: 30px;
+
+    &-wrapper {
+        display: flex;
+        align-items: center;
+    }
+
+    &-checkbox {
+        margin-right: 8px;
+        width: 24px;
+        height: 24px;
+        border: 1px solid #9DA4BC;
+        border-radius: 4px;
+        accent-color: $primary-color;
+    }
+
+    &-label {
+        color: $secondary-color;
+        font-size: 18px;
+    }
+
+    &-instructions {
+        padding: 5px;
+        color: $gray-color;
+        font-size: 12px;
+        font-weight: 300;
+
+        &-link1, &-link2 {
+            color: $primary-color;
+            text-decoration: none;
+        }
+    }
+}
+
+.product-info {
+    margin-top: 50px;
+    font-size: 16px;
+    color: $secondary-color;
+
+    &-price {
+        color: $primary-color;
+        margin: 0;
+    }
+
+    &-retail-price {
+        span {
+            color: #E66349;
+            text-decoration: line-through;
+        }
+    }
+
+    &-instant-saving {
+        span {
+            color: $success-color;
+        }
+    }
+
+    &-sub {
+        text-transform: uppercase;
+    }
+
+    &>div {
+        margin-top: 4px;
+    }
+}
+
+.service-info {
+    margin-top: 46px;
+    &-group-1 {
+        max-width: 344px;
+        margin: auto;
+        height: 60px;
+        display: flex;
+        justify-content: space-evenly;
+        align-items: start;
+
+        &>div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: space-between;
+        }
+        img {
+            max-width: 56px;
+        }
+        p {
+            color: $secondary-color;
+            font-size: 14px;
+            margin: 11px 0 0 0;
+        }
+    }
+
+    &-group-2 {
+        max-width: 344px;
+        margin: 43px auto 0 auto;
+        position: relative;
+        height: 135px;
+        color: $white-color;
+        text-transform: uppercase;
+        img {
+            position: absolute;
+            left: 0;
+            right: 0;
+            margin-right: auto;
+            margin-left: auto;
+            &:nth-child(2) {
+                top: 33px;
+            }
+        }
+        h2 {
+            position: absolute;
+            color: inherit;
+            left: 130px;
+            top: 26px;
+            margin: 0;
+        }
+        span {
+            position: absolute;
+            margin: 0;
+            font-size: 13.5px;
+            top: 76px;
+            left: 85px;
+            font-weight: 300;
+        }
+    }
+
+    &-group-3 {
+        color: $success-color;
+        font-size: 18px;
+        margin-top: 8px;
+        font-weight: bold;
+        padding: 0 25px;
+    }
+
+    &-group-4 {
+        color: $secondary-color;
+        font-size: 18px;
+        margin-top: 25px;
+        padding: 0 25px;
+    }
+
+    &-group-5 {
+        color: $gray-color;
+        font-size: 14px;
+        margin-top: 25px;
+    }
+}

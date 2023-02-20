@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Dermal Repair</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='css/styles.css'>
+</head>
+<body>
+    <div class="app">
+        <div class="app-container">
+            <h2>CHOOSE YOUR PACKAGE</h2>
+            <form onsubmit="return handleSubmit(event)" class="form">
+                <div class="button-group-quantity">
+                    <input id="product_1" name="product_1" type="button" value="1">
+                    <input id="product_3" name="product_3" type="button" value="3">
+                    <input id="product_6" name="product_6" type="button" value="6">
+                </div>
+                <div class="button-group-agreement">
+                    <input type="button" class="button-group-agreement-purchase" value="One-Time Purchase">
+                    <input type="button" class="button-group-agreement-subscribe" value="Subscribe & Save More">
+                </div>
+                <div class="accept-terms">
+                    <div class="accept-terms-wrapper">
+                        <input class="accept-terms-checkbox" type="checkbox" name="terms-and-conditions" />
+                        <label class="accept-terms-label">Yes! I want to Subscribe & Save</label>
+                    </div>
+                    <p class="accept-terms-instructions">By checking the "Yes" box above, you agree to receive "Dermal Repair Complex" once per month and that your credit card will be charged the amount matching your selected package size, billed to your card as "Beverly Hills MD". You can stop shipments anytime by calling customer service at 
+                        <a target="_blank" class="accept-terms-instructions-link1">(877) 828-5528</a> 
+                        from 6am to 6pm PST. (
+                            <a target="_blank" class="accept-terms-instructions-link2">All terms and conditions apply</a>)</p>
+                </div>
+                <div class="images-container">
+                </div>
+                <div class="product-info">
+                    <h1 class="product-info-price"></h1>
+                    <div class="product-info-retail-price"></div>
+                    <div class="product-info-instant-saving"></div>
+                    <div class="product-info-sub">free us shipping</div>
+                </div>
+                <input class="form-submit-button" type="submit" value="BUY NOW">
+            </form>
+            <div class="service-info">
+                <div class="service-info-group-1">
+                    <div>
+                        <img src="assets/united-states-of-america.svg" alt="USA" />
+                        <p>Manufactured in USA</p>
+                    </div>
+                    <div>
+                        <img src="assets/delivery-truck.svg" alt="Door to door delivery" />
+                        <p>Door to door</p>
+                    </div>
+                </div>
+                <div class="service-info-group-2">
+                    <img src="assets/warranty.svg" alt="Warranty" />
+                    <img src="assets/badge.svg" alt="Badge" />
+                    <h2>90 day</h2>
+                    <span>money back guarantee</span>
+                </div>
+                <div class="service-info-group-3">
+                    Your order is backed by our 90-day money-back guarantee.
+                </div>
+                <div class="service-info-group-4">
+                    We are confident you'll love it. So if you're not completely satisfied for any reason, just send it back for a full refund!
+                </div>
+                <div class="service-info-group-5">
+                    (Not including return shipping)
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    <script src="index.js"></script>
+</body>
+</html>
