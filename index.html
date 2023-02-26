@@ -11,7 +11,7 @@
     <div class="app">
         <div class="app-container">
             <h2>CHOOSE YOUR PACKAGE</h2>
-            <form onsubmit="return handleSubmit(event)" class="form">
+            <form class="form">
                 <div class="button-group-quantity">
                     <input id="product_1" name="product_1" type="button" value="1">
                     <input id="product_3" name="product_3" type="button" value="3">
@@ -23,13 +23,13 @@
                 </div>
                 <div class="accept-terms">
                     <div class="accept-terms-wrapper">
-                        <input class="accept-terms-checkbox" type="checkbox" name="terms-and-conditions" />
-                        <label class="accept-terms-label">Yes! I want to Subscribe & Save</label>
+                        <input class="accept-terms-checkbox" id="accept_terms_checkbox" type="checkbox" name="terms-and-conditions" />
+                        <label class="accept-terms-label" for="accept_terms_checkbox">Yes! I want to Subscribe & Save</label>
                     </div>
                     <p class="accept-terms-instructions">By checking the "Yes" box above, you agree to receive "Dermal Repair Complex" once per month and that your credit card will be charged the amount matching your selected package size, billed to your card as "Beverly Hills MD". You can stop shipments anytime by calling customer service at 
-                        <a target="_blank" class="accept-terms-instructions-link1">(877) 828-5528</a> 
+                        <a class="accept-terms-instructions-link1" href="#">(877) 828-5528</a> 
                         from 6am to 6pm PST. (
-                            <a target="_blank" class="accept-terms-instructions-link2">All terms and conditions apply</a>)</p>
+                            <a class="accept-terms-instructions-link2" href="#">All terms and conditions apply</a>)</p>
                 </div>
                 <div class="images-container">
                 </div>
@@ -39,7 +39,7 @@
                     <div class="product-info-instant-saving"></div>
                     <div class="product-info-sub">free us shipping</div>
                 </div>
-                <input class="form-submit-button" type="submit" value="BUY NOW">
+                <button class="form-submit-button" type="submit">BUY NOW</button>
             </form>
             <div class="service-info">
                 <div class="service-info-group-1">
