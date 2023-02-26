@@ -31,19 +31,16 @@ let subscribeBtn = document.querySelector('.button-group-agreement-subscribe');
 let acceptTerms = document.querySelector('.accept-terms');
 let acceptTermsCheckbox = document.querySelector('.accept-terms-checkbox')
 let oneTimePurchase = document.querySelector('.button-group-agreement-purchase');
-let link1 = document.querySelector('.accept-terms-instructions-link1');
-let link2 = document.querySelector('.accept-terms-instructions-link2');
 let submitBtn = document.querySelector('.form-submit-button');
-let selectedQuantity;
+let form = document.querySelector('.form')
+let selectedProduct;
 
 window.addEventListener('load', function() {
     handleImagesDisplay(1);
     handleProductInfo(data[0]);
-    acceptTerms.style.display = 'none';
-    subscribeBtn.disabled = true;
     productsButtons[0].classList.add('active');
     oneTimePurchase.classList.add('active');
-    selectedQuantity = productsButtons[0];
+    selectedProduct = data[0];
 });
 
 /**
@@ -52,30 +49,20 @@ window.addEventListener('load', function() {
 for(let i = 0; i < productsButtons.length; i++) {
     productsButtons[i].addEventListener('click', () => {
         let currentProductInfo = data[i];
-        handleProductInfo(currentProductInfo, false)
+        handleProductInfo(currentProductInfo, subscribeBtn.classList.contains('active') ? true : false)
         handleImagesDisplay(Number(currentProductInfo.product));
-        selectedQuantity = productsButtons[i];
+        selectedProduct = data[i];
         productsButtons.forEach(elem => {elem.classList.remove("active")})  
         productsButtons[i].classList.add('active');
-        link1.setAttribute('href', '//' + currentProductInfo.link);
-        link2.setAttribute('href', '//' + currentProductInfo["subscribe-link"]);
-        if(productsButtons[i].id === 'product_3'){
-            subscribeBtn.disabled = false;
-        }else {
-            subscribeBtn.disabled = true;
-        }
+        acceptTermsCheckbox.checked = false;
+        toggleSubmitBtnDisable(subscribeBtn.classList.contains('active') ? true : false)
     })
 }
 
 subscribeBtn.addEventListener('click', (event) => {
-    submitBtn.disabled = true;
     acceptTerms.style.display = 'block';
-    handleProductInfo(data.filter(product => (product.product === selectedQuantity.id.replace('product_', '')))[0], true)
-    productsButtons.forEach(productBtn => {
-        if(productBtn.id !== selectedQuantity.id) {
-            productBtn.disabled = true;
-        }
-    })
+    submitBtn.disabled = true;
+    handleProductInfo(selectedProduct, true)
     event.target.classList.add('active')
     oneTimePurchase.classList.remove('active');
 });
@@ -84,22 +71,24 @@ oneTimePurchase.addEventListener('click', (event) => {
     acceptTerms.style.display = 'none';
     acceptTermsCheckbox.checked = false;
     submitBtn.disabled = false;
-    handleProductInfo(data.filter(product => (product.product === selectedQuantity.id.replace('product_', '')))[0], false)
-    productsButtons.forEach(productBtn => {
-        productBtn.disabled = false;
-    })
+    handleProductInfo(selectedProduct, false)
     event.target.classList.add('active');
     subscribeBtn.classList.remove('active');
 });
 
 acceptTermsCheckbox.addEventListener('click', () => {
-    submitBtn.disabled = !acceptTermsCheckbox.checked;
+    toggleSubmitBtnDisable(!acceptTermsCheckbox.checked)
 });
 
-function handleSubmit(event) {
+form.addEventListener('submit', (event) => {
     event.preventDefault();
+    let url = selectedProduct["link"];
+    if(subscribeBtn.classList.contains('active')) {
+        url = selectedProduct["subscribe-link"];
+    }
+    window.open("//" + url, "_blank");
     return false;
-}
+})
 
 /**
  * display image quantity by value
@@ -133,7 +122,7 @@ function handleImagesDisplay(value) {
 }
 
 /**
- * calculate prices + info to present
+ * calculate prices + info to display
  * @param {*} product 
  * @param {*} subscribe 
  */
@@ -150,6 +139,10 @@ function handleProductInfo(product, subscribe) {
         productInstantSaving.innerHTML = 'Instant Savings ' + `<span>${formatter().format(Number(product["retail-price"]) - Number(product.price))}</span>`;
     }
     productRetailPrice.innerHTML = 'Retail Price ' + `<span>${formatter().format(Number(product["retail-price"]))}</span>`;
+}
+
+function toggleSubmitBtnDisable(bool) {
+    submitBtn.disabled = bool;
 }
 
 /**
