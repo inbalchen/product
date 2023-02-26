@@ -1,10 +1,33 @@
+@font-face {
+  font-family: Assistant-Reg;
+  src: url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.eot");
+  src: url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.eot?#iefix") format("embedded-opentype"), url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.woff2") format("woff2"), url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.woff") format("woff"), url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.ttf") format("truetype"), url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.svg#Assistant") format("svg");
+}
+
+@font-face {
+  font-family: Assistant-Bold;
+  src: url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.eot");
+  src: url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.eot?#iefix") format("embedded-opentype"), url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.woff2") format("woff2"), url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.woff") format("woff"), url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.ttf") format("truetype"), url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.svg#Assistant") format("svg");
+}
+
+@font-face {
+  font-family: Assistant-Light;
+  src: url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.eot");
+  src: url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.eot?#iefix") format("embedded-opentype"), url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.woff2") format("woff2"), url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.woff") format("woff"), url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.ttf") format("truetype"), url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.svg#Assistant") format("svg");
+}
+
+@font-face {
+  font-family: Proxima-Nov-Bold;
+  src: url("../font/Proxima-Nova-Bold/72b6f2c9990bd3d37b8013a59ed78902.eot");
+  src: url("../font/Proxima-Nova-Bold/72b6f2c9990bd3d37b8013a59ed78902.eot?#iefix") format("embedded-opentype"), url("../font/Proxima-Nova-Bold/72b6f2c9990bd3d37b8013a59ed78902.woff2") format("woff2"), url("../font/Proxima-Nova-Bold/72b6f2c9990bd3d37b8013a59ed78902.ttf") format("truetype");
+}
+
 html, body {
   margin: 0;
   height: 100%;
 }
 
 * {
-  font-family: 'Roboto', sans-serif;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -14,7 +37,9 @@ html, body {
   background-repeat: no-repeat, no-repeat, no-repeat;
   background-position: -178px -16px, right -151px top, center;
   background-size: 356px 699px, 320px 678px, 100% 100%;
+  background-attachment: scroll, scroll, fixed;
   padding: 20px 0;
+  font-family: Assistant-Light;
 }
 
 @media screen and (max-width: 768px) {
@@ -23,6 +48,7 @@ html, body {
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-position: -182px -16px, right -151px top, center;
     background-size: 356px 699px, 320px 678px, 100% 100%;
+    background-attachment: scroll, scroll, fixed;
   }
 }
 
@@ -32,6 +58,7 @@ html, body {
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-position: -171px 140px, 263px 173px, center;
     background-size: 273px 454px, 197px 351px, 100% 100%;
+    background-attachment: scroll, scroll, fixed;
   }
 }
 
@@ -40,10 +67,17 @@ html, body {
   text-transform: uppercase;
   margin: 0;
   padding: 20px 0;
+  font-family: Assistant-Bold;
 }
 
 .app-container {
   text-align: center;
+}
+
+@media screen and (max-width: 430px) {
+  .app {
+    overflow: hidden;
+  }
 }
 
 .form {
@@ -64,11 +98,20 @@ html, body {
   font-weight: bold;
   height: 58px;
   cursor: pointer;
+  -webkit-transition: all 150ms ease-in-out;
+  transition: all 150ms ease-in-out;
+}
+
+.form-submit-button:hover {
+  -webkit-box-shadow: 0 0 10px 0 #7FB457 inset, 0 0 10px 4px #7FB457;
+          box-shadow: 0 0 10px 0 #7FB457 inset, 0 0 10px 4px #7FB457;
 }
 
 .form-submit-button:disabled {
   background: #9A9B9C;
   cursor: auto;
+  -webkit-box-shadow: none;
+          box-shadow: none;
 }
 
 .button-group-quantity {
@@ -78,26 +121,19 @@ html, body {
   background: #FFFFFF;
   border: 1px solid #9DA4BC;
   height: 40px;
-  position: relative;
-  z-index: 0;
-}
-
-.button-group-quantity :nth-child(1) {
-  left: 0;
-}
-
-.button-group-quantity :nth-child(2) {
-  margin-left: auto;
-  margin-right: auto;
-  left: 0;
-  right: 0;
-}
-
-.button-group-quantity :nth-child(3) {
-  right: 0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 14px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .button-group-quantity input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
   outline: transparent;
   border: 1px solid transparent;
   background: none;
@@ -107,18 +143,17 @@ html, body {
   -webkit-transition: background 0.1s;
   transition: background 0.1s;
   cursor: pointer;
-  position: absolute;
-  width: 120px;
-  z-index: 1;
-  height: inherit;
+  height: 100%;
+  font-family: Proxima-Nov-Bold;
 }
 
 .button-group-quantity input:hover:not([disabled]), .button-group-quantity input.active, .button-group-quantity input:focus {
   background: #3A61A0;
   color: #FFFFFF;
+  font-family: Assistant-Reg;
   font-size: 30px;
   height: 46px;
-  top: -4px;
+  font-family: Proxima-Nov-Bold;
 }
 
 .button-group-agreement {
@@ -131,11 +166,16 @@ html, body {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 17px;
-  margin-bottom: 50px;
+  margin-top: 14px;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .button-group-agreement input {
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 0px;
+          flex: 1 1 0;
   outline: transparent;
   border: 1px solid transparent;
   background: none;
@@ -145,21 +185,33 @@ html, body {
   -webkit-transition: background 0.1s;
   transition: background 0.1s;
   cursor: pointer;
-  -webkit-box-flex: 1;
-      -ms-flex: 1 1 0px;
-          flex: 1 1 0;
-  font-weight: 300;
+  height: 100%;
+  font-family: Assistant-Light;
 }
 
 .button-group-agreement input:hover:not([disabled]), .button-group-agreement input.active, .button-group-agreement input:focus {
   background: #3A61A0;
   color: #FFFFFF;
+  font-family: Assistant-Reg;
+  font-size: 16px;
+  height: 100%;
+  font-family: Assistant-Reg;
+}
+
+@media screen and (max-width: 300px) {
+  .button-group-agreement input {
+    font-size: 12px;
+  }
+  .button-group-agreement input:hover:not([disabled]), .button-group-agreement input.active, .button-group-agreement input:focus {
+    font-size: 12px;
+  }
 }
 
 .images-container {
   position: relative;
   height: 158px;
   z-index: 0;
+  margin-top: 54px;
 }
 
 .images-container img {
@@ -221,10 +273,10 @@ html, body {
   max-width: 55px;
   -webkit-transform: rotate(-20deg);
           transform: rotate(-20deg);
-  left: 48px;
+  left: 47px;
   z-index: 1;
-  top: 10px;
-  font-weight: bold;
+  top: 6px;
+  font-family: Assistant-Bold;
 }
 
 .images-container .stamp-6 {
@@ -260,7 +312,12 @@ html, body {
 
 .accept-terms {
   text-align: left;
-  margin-bottom: 30px;
+  margin-top: 15px;
+  display: none;
+  -webkit-animation: fadeIn 0.6s linear forwards;
+  animation: fadeIn 0.6s linear forwards;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 10px 0;
 }
 
 .accept-terms-wrapper {
@@ -302,6 +359,7 @@ html, body {
   margin-top: 50px;
   font-size: 16px;
   color: #45516d;
+  font-family: Assistant-Bold;
 }
 
 .product-info-price {
@@ -396,8 +454,8 @@ html, body {
 .service-info-group-2 h2 {
   position: absolute;
   color: inherit;
-  left: 130px;
-  top: 26px;
+  left: 40%;
+  top: 15%;
   margin: 0;
 }
 
@@ -405,8 +463,8 @@ html, body {
   position: absolute;
   margin: 0;
   font-size: 13.5px;
-  top: 76px;
-  left: 85px;
+  top: 53%;
+  left: 29%;
   font-weight: 300;
 }
 

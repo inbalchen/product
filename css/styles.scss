@@ -1,12 +1,54 @@
+@font-face {
+    font-family: Assistant-Reg; 
+    src: url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.eot"); 
+    src: url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.eot?#iefix") format("embedded-opentype"), 
+    url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.woff2") format("woff2"), 
+    url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.woff") format("woff"), 
+    url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.ttf") format("truetype"), 
+    url("../font/Assistant-Reg/88e211ded7f38a7034c9c2cc3c3d8807.svg#Assistant") format("svg"); 
+}
+
+@font-face {
+    font-family: Assistant-Bold; 
+    src: url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.eot"); 
+    src: url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.eot?#iefix") format("embedded-opentype"), 
+    url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.woff2") format("woff2"), 
+    url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.woff") format("woff"), 
+    url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.ttf") format("truetype"), 
+    url("../font/Assistant-Bold/b15efb1cccf12da9d9996c2064265a5b.svg#Assistant") format("svg"); 
+}
+
+@font-face {
+    font-family: Assistant-Light; 
+    src: url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.eot"); src: 
+    url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.eot?#iefix") format("embedded-opentype"), 
+    url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.woff2") format("woff2"), 
+    url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.woff") format("woff"), 
+    url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.ttf") format("truetype"), 
+    url("../font/Assistant-Light/49720e4c68486cb89dcbea2f440c8fe1.svg#Assistant") format("svg");
+}
+
+@font-face {
+    font-family: Proxima-Nov-Bold; 
+    src: url("../font/Proxima-Nova-Bold/72b6f2c9990bd3d37b8013a59ed78902.eot"); 
+    src: url("../font/Proxima-Nova-Bold/72b6f2c9990bd3d37b8013a59ed78902.eot?#iefix") format("embedded-opentype"), 
+    url("../font/Proxima-Nova-Bold/72b6f2c9990bd3d37b8013a59ed78902.woff2") format("woff2"), 
+    url("../font/Proxima-Nova-Bold/72b6f2c9990bd3d37b8013a59ed78902.ttf") format("truetype")
+}
+
 @mixin button-group {
     border-radius: 25px;
     box-shadow: 10px 10px 6px #FFFFFF29;
     background: #FFFFFF;
     border: 1px solid #9DA4BC;
     height: 40px;
+    display: flex;
+    margin-top: 14px;
+    align-items: center;
 }
 
-@mixin button-group-input ($color, $font-size) {
+@mixin button-group-input ($color, $font-size, $font-family, $font-size-2, $height, $font-family-2) {
+    flex: 1 1 0;
     outline: transparent;
     border: 1px solid transparent;
     background: none;
@@ -15,6 +57,17 @@
     color: $color;
     transition: background 0.1s;
     cursor: pointer;
+    height: 100%;
+    font-family: $font-family;
+
+    &:hover:not([disabled]), &.active, &:focus {
+        background: $primary-color;
+        color: $white-color;
+        font-family: Assistant-Reg;
+        font-size: $font-size-2;
+        height: $height;
+        font-family: $font-family-2;
+    }
 }
 
 $primary-color: #3A61A0;
@@ -26,6 +79,7 @@ $gray-color: #9A9B9C;
 $small: 375px;
 $medium: 768px;
 $large: 1920px;
+$xsmall: 300px;
 
 html, body {
     margin: 0;
@@ -33,7 +87,6 @@ html, body {
 }
 
 * {
-    font-family: 'Roboto', sans-serif;
     box-sizing: border-box;
 }
 
@@ -42,13 +95,16 @@ html, body {
     background-repeat: no-repeat, no-repeat, no-repeat;
     background-position: -178px -16px, right -151px top, center;
     background-size: 356px 699px, 320px 678px, 100% 100%;
+    background-attachment: scroll, scroll, fixed;
     padding: 20px 0;
+    font-family: Assistant-Light;
 
     @media screen and (max-width: $medium) {
         background: url(../assets/leaves_left@3x.png), url(../assets/leaves_right@3x.png), url(../assets/fixed_bg.png);
         background-repeat: no-repeat, no-repeat, no-repeat;
         background-position: -182px -16px, right -151px top, center;
         background-size: 356px 699px, 320px 678px, 100% 100%;
+        background-attachment: scroll, scroll, fixed;
     }
 
     @media screen and (max-width: $small) {
@@ -56,6 +112,7 @@ html, body {
         background-repeat: no-repeat, no-repeat, no-repeat;
         background-position: -171px 140px, 263px 173px, center;
         background-size: 273px 454px, 197px 351px, 100% 100%;
+        background-attachment: scroll, scroll, fixed;
     }
 
     h2 {
@@ -63,14 +120,16 @@ html, body {
         text-transform: uppercase;
         margin: 0;
         padding: 20px 0;
-        
+        font-family: Assistant-Bold;
     }
 
     &-container {
         text-align: center;
     }
 
-    
+    @media screen and (max-width: 430px) {
+        overflow: hidden;
+    }
 }
 
 .form {
@@ -89,65 +148,36 @@ html, body {
         font-weight: bold;
         height: 58px;
         cursor: pointer;
+        transition: all 150ms ease-in-out;
+
+        &:hover {
+            box-shadow: 0 0 10px 0 $success-color inset, 0 0 10px 4px $success-color;
+        }
 
         &:disabled {
             background: $gray-color;
             cursor: auto;
+            box-shadow: none;
         }
     }
 }
 
 .button-group-quantity {
     @include button-group();
-    position: relative;
-    z-index: 0;
-
-    & :nth-child(1) {
-        left: 0; 
-    }
-
-    & :nth-child(2) {
-        margin-left: auto; 
-        margin-right: auto; 
-        left: 0; 
-        right: 0;
-    }
-
-    & :nth-child(3) {
-        right: 0; 
-    }
-    
     input {
-        @include button-group-input($gray-color, 25px);
-        position: absolute;
-        width: 120px;
-        z-index: 1;
-        height: inherit;
-
-        &:hover:not([disabled]), &.active, &:focus{
-            background: $primary-color;
-            color: $white-color;
-            font-size: 30px;
-            height: 46px;
-            top: -4px;
-        }
+        @include button-group-input($gray-color, 25px, Proxima-Nov-Bold, 30px, 46px, Proxima-Nov-Bold);
     }
 }
 
 .button-group-agreement {
     @include button-group();
-    display: flex;
-    margin-top: 17px;
-    margin-bottom: 50px;
-
     input {
-        @include button-group-input($secondary-color, 16px);
-        flex: 1 1 0;
-        font-weight: 300;
-
-        &:hover:not([disabled]), &.active, &:focus {
-            background: $primary-color;
-            color: $white-color;
+        @include button-group-input($secondary-color, 16px, Assistant-Light, 16px, 100%, Assistant-Reg);
+        @media screen and (max-width: $xsmall) {
+            font-size: 12px;
+            &:hover:not([disabled]), &.active, &:focus {
+                font-size: 12px;
+            }
         }
     }
 }
@@ -156,6 +186,7 @@ html, body {
     position: relative;
     height: 158px;
     z-index: 0;
+    margin-top: 54px;
 
     img {
         max-width: 215px;
@@ -213,10 +244,10 @@ html, body {
             position: absolute;
             max-width: 55px;
             transform: rotate(-20deg);
-            left: 48px;
+            left: 47px;
             z-index: 1;
-            top: 10px;
-            font-weight: bold;
+            top: 6px;
+            font-family: Assistant-Bold;
         }
         
     }
@@ -246,7 +277,12 @@ html, body {
 
 .accept-terms {
     text-align: left;
-    margin-bottom: 30px;
+    margin-top: 15px;
+    display: none;
+    -webkit-animation: fadeIn 0.6s linear forwards;
+    animation: fadeIn 0.6s linear forwards;
+    background: rgba(255, 255, 255, 0.8);
+    padding: 10px 0;
 
     &-wrapper {
         display: flex;
@@ -284,7 +320,7 @@ html, body {
     margin-top: 50px;
     font-size: 16px;
     color: $secondary-color;
-
+    font-family: Assistant-Bold;
     &-price {
         color: $primary-color;
         margin: 0;
@@ -359,16 +395,16 @@ html, body {
         h2 {
             position: absolute;
             color: inherit;
-            left: 130px;
-            top: 26px;
+            left: 40%;
+            top: 15%;
             margin: 0;
         }
         span {
             position: absolute;
             margin: 0;
             font-size: 13.5px;
-            top: 76px;
-            left: 85px;
+            top: 53%;
+            left: 29%;
             font-weight: 300;
         }
     }
